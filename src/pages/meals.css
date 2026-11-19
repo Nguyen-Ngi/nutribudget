@@ -1,0 +1,198 @@
+.meals-heading { margin-bottom: 1rem; }
+.meals-heading h1 { font-size: clamp(2.3rem, 4.8vw, 3.7rem); }
+.meal-no-budget { padding: 1rem; }
+.meal-date-choice {
+  display: grid;
+  grid-template-columns: minmax(0, 11rem) minmax(0, 12rem);
+  gap: .65rem;
+  margin-bottom: 1rem;
+}
+.meal-tools {
+  display: grid;
+  gap: .35rem;
+  margin-top: 1.15rem;
+  padding-top: .5rem;
+  border-top: 1px solid var(--line);
+}
+.meal-diet { margin: -.4rem 0 .8rem; }
+.meal-diet summary, .meal-tools details > summary, .meal-portion-settings summary, .recipe-details summary {
+  cursor: pointer;
+  color: var(--pine);
+  font-weight: 700;
+  padding-block: .4rem;
+}
+.meal-preference-body { display: grid; gap: .75rem; padding: .4rem 0 .85rem; max-width: 36rem; }
+.meal-nutrition { display: flex; flex-wrap: wrap; gap: .25rem .65rem; color: var(--muted); }
+.dish-builder { display: grid; grid-template-columns: minmax(0, 1fr) minmax(14rem, .32fr); gap: 1.25rem; align-items: start; }
+.dish-summary { grid-column: 2; grid-row: 1; padding: 1rem; position: sticky; top: .75rem; max-height: calc(100vh - 1.5rem); overflow: auto; background: #edf1e8; }
+.dish-summary h2 { font-size: 1.24rem; }
+.dish-summary > p { margin-top: .45rem; }
+.meal-selection-summary p { color: var(--muted); }
+.meal-portion-settings { margin-top: .35rem; }
+.dish-catalog { grid-column: 1; grid-row: 1; min-width: 0; }
+.dish-portion { display: flex; flex-wrap: wrap; align-items: end; gap: .45rem; }
+.dish-search { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .6fr); gap: .65rem; }
+.meal-field { display: grid; gap: .35rem; min-width: 0; font-size: .85rem; font-weight: 700; }
+.meal-field :is(input, select) {
+  width: 100%;
+  min-width: 0;
+  min-height: 2.75rem;
+  padding: .45rem .65rem;
+  border: 1px solid #879c8c;
+  border-radius: .5rem;
+  background: white;
+  color: var(--ink);
+  font: inherit;
+  font-size: .95rem;
+  font-weight: 500;
+}
+.meal-field span { line-height: 1.4; }
+.meal-preference-body fieldset { min-width: 0; border: 0; padding: 0; margin: 0; }
+.meal-preference-body legend { padding: 0; font-size: .9rem; font-weight: 750; }
+.meal-checks { display: flex; flex-wrap: wrap; gap: .1rem .65rem; }
+.meal-check, .meal-checks label { display: inline-flex; align-items: center; gap: .45rem; min-height: 2rem; font-size: .85rem; font-weight: 650; cursor: pointer; }
+.meal-check input, .meal-checks input { width: 1rem; height: 1rem; margin: 0; flex: none; }
+.meal-checks label span { text-transform: capitalize; }
+
+.meal-text-button {
+  background: transparent;
+  border: 0;
+  padding: .25rem .2rem;
+  min-height: 2rem;
+  color: var(--pine);
+  text-decoration: underline;
+  text-underline-offset: .2em;
+  text-align: left;
+  font: inherit;
+  font-size: .85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.meal-text-button:disabled { opacity: .65; cursor: default; }
+
+.meal-warning { color: var(--error); margin-top: .4rem; font-size: .84rem; font-weight: 700; line-height: 1.4; }
+.recipe-details { margin-top: .4rem; }
+.recipe-details summary { font-size: .83rem; padding-block: .3rem; }
+.recipe-detail-body { display: grid; gap: 1rem; margin-top: .4rem; }
+.recipe-method { border-top: 1px solid var(--line); padding-top: .7rem; font-size: .87rem; line-height: 1.5; }
+.recipe-method h3, .recipe-method h4, .recipe-method h5 { margin: 0; font-size: .9rem; }
+.recipe-method h3, .recipe-method h5 { margin-top: .6rem; }
+.recipe-method p { margin-top: .2rem; }
+.recipe-method ol { margin: .3rem 0 0; padding-left: 1.2rem; }
+.recipe-method ol li + li { margin-top: .25rem; }
+.recipe-ingredient-list { margin-top: .25rem; }
+.recipe-ingredient-list li { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .25rem .75rem; }
+.recipe-ingredient-list li span:last-child { font-variant-numeric: tabular-nums; }
+
+.meal-history { margin-top: 1rem; }
+.planned-meals > p { margin-top: .4rem; }
+.meal-history details { border-top: 1px solid var(--line); margin-top: .6rem; }
+.meal-history summary { padding-block: .6rem; }
+.meal-saved-list li { padding-block: .65rem; border-top: 1px solid var(--line); }
+.meal-saved-list li:first-child { margin-top: .5rem; }
+.meal-saved-list li p { line-height: 1.4; font-size: .88rem; }
+.meal-saved-list li p[lang] { font-weight: 700; }
+.meal-saved-date { color: var(--muted); }
+
+.dish-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .85rem; margin: .75rem 0 1rem; }
+.dish-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: .8rem; background: var(--paper); display: flex; flex-direction: column; }
+.dish-card-art { position: relative; display: grid; place-items: center; aspect-ratio: 1.7; overflow: hidden; background: #e8d3b9; }
+.dish-card-art[data-category=vegetable], .dish-card-art[data-category=rice] { background: #dce8d9; }
+.dish-card-art[data-category=breakfast] { background: #f2dfbc; }
+.dish-card-art img { position: absolute; inset: 0; height: 100%; width: 100%; object-fit: cover; }
+.dish-plate { width: 36%; aspect-ratio: 1; border: 4px solid #55735d; border-radius: 50%; outline: 1px solid #55735d; outline-offset: 4px; background: #faf8f3; display: grid; place-items: center; color: #416953; }
+.dish-plate svg { width: 46%; height: auto; }
+.dish-card-content { display: flex; flex-direction: column; align-items: flex-start; padding: .8rem; flex: 1; }
+.dish-card-content > p { color: var(--muted); font-size: .83rem; margin-top: .35rem; }
+.dish-add { margin-top: auto; }
+.dish-selected li { padding: .7rem 0; border-bottom: 1px solid var(--line); }
+.dish-portion { align-items: end; margin-top: .3rem; justify-content: space-between; }
+.dish-portion select { min-width: 4.25rem; }
+.dish-save { margin: .75rem 0 .4rem; }
+.dish-empty { padding: 1rem 0; }
+@media(max-width: 61rem) { .dish-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media(max-width: 43rem) {
+  .dish-builder { display: flex; flex-direction: column; }
+  .dish-summary, .dish-catalog { width: 100%; }
+  .dish-summary { position: static; max-height: none; }
+  .dish-grid { gap: .6rem; }
+}
+.dish-credits { margin-top: .85rem; color: var(--muted); font-size: .8rem; }
+.dish-credits a { text-underline-offset: .18em; }
+.meals-heading { margin-bottom: 1rem; }
+.meals-heading h1 { font-size: clamp(2.3rem, 4.8vw, 3.7rem); }
+@media(max-width: 43rem) {
+  .dish-summary[data-empty=true] { display: none; }
+}
+@media(max-width: 34rem) {
+  .dish-search { grid-template-columns: 1fr; }
+}
+
+.dish-detail-trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+.dish-detail-trigger:focus-visible { outline-offset: -3px; }
+.dish-card > h3 { margin: 0; font: 600 1.08rem/1.3 var(--display-font); }
+.dish-card-art { aspect-ratio: 8 / 5; }
+.dish-card-name { display: block; padding: .6rem .7rem 0; overflow-wrap: anywhere; }
+.dish-detail-trigger:hover .dish-card-name { text-decoration: underline; text-underline-offset: .18em; }
+.dish-art-label {
+  position: absolute;
+  inset: auto .35rem .35rem auto;
+  padding: .12rem .35rem;
+  border-radius: .25rem;
+  color: var(--ink);
+  background: var(--paper);
+  font: 600 .72rem/1.35 var(--body-font, sans-serif);
+}
+.dish-card-content { gap: .4rem; padding: .2rem .7rem .65rem; }
+.dish-card-content > p { margin: 0; }
+.dish-add { min-height: 2.75rem; padding: .35rem .7rem; font-size: .84rem; }
+.dish-dialog {
+  width: min(38rem, calc(100% - 1.5rem));
+  max-height: calc(100% - 1.5rem);
+  margin: auto;
+  padding: 0 1rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: .85rem;
+  color: var(--ink);
+  background: var(--paper);
+}
+.dish-dialog::backdrop { background: rgb(19 34 26 / 60%); }
+.dish-dialog-header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .7rem;
+  padding: .75rem 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+}
+.dish-dialog-header h2 { font-size: 1.35rem; }
+.dish-dialog-header .button { flex: none; min-height: 2.75rem; }
+
+.dish-add[aria-pressed=true] { border-color: var(--pine); background: var(--soft-surface); }
+@media (max-width: 43rem) {
+  .dish-builder { display: flex; flex-direction: column-reverse; }
+  .dish-summary {
+    position: sticky;
+    inset-block: auto 0;
+    z-index: 1;
+    max-height: min(23rem, 55dvh);
+    padding: .7rem .9rem;
+  }
+  .dish-summary h2 { display: inline; margin-inline-end: .5rem; }
+  .meal-selection-summary p { display: inline; font-size: .92rem; }
+  .dish-save { margin: .3rem 0 0; }
+  .dish-save .button { min-height: 2.65rem; }
+}
