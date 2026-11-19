@@ -24,7 +24,7 @@ export function App() {
   }, [route])
 
   return (
-    <div className="app-shell">
+    <div className="app-shell" data-page={page}>
       <a className="skip-link" href="#main-content" onClick={(event) => {
         event.preventDefault()
         main.current?.focus()

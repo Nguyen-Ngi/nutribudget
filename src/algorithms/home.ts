@@ -21,10 +21,12 @@ export function resolveHome(data: BudgetData, meals: MealPlanData, today: string
   const cooked = cookedKeys(kitchen)
   const slots = periodSlots(meals, period.id)
   const start = today > period.startDate ? today : period.startDate
-  const meal = slots.filter((slot) => slot.active && slot.recipeIds.length &&
+  const upcoming = slots.filter((slot) => slot.active && slot.recipeIds.length &&
     slot.date >= start && slot.date <= timing.end && !cooked.has(mealKey(period.id, slot)))
-    .sort((a, b) => a.date.localeCompare(b.date) || mealSlots.indexOf(a.slot) - mealSlots.indexOf(b.slot))[0]
-  const budget = { period, timing, totals }
+  const meal = upcoming.sort((a, b) => a.date.localeCompare(b.date) || mealSlots.indexOf(a.slot) - mealSlots.indexOf(b.slot))[0]
+  const selectedDishes = upcoming.reduce((count, slot) => count + slot.recipeIds.length, 0)
+  const hasShoppingPlan = kitchen.approved?.periodId === period.id && kitchen.approved.lines.length > 0
+  const budget = { period, timing, totals, selectedDishes, hasShoppingPlan }
   if (!meal) return { kind: slots.some((slot) => cooked.has(mealKey(period.id, slot))) ? 'cooked' : 'plan', budget } as const
 
   const requirements = cookingRequirements(meal)

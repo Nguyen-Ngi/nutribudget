@@ -21,6 +21,8 @@ test('Home distinguishes setup, planning, and expired periods', () => {
   const plan = resolveHome(data, meals(), today)
   assert.equal(plan.kind, 'plan')
   assert.equal(plan.budget.totals.planningAvailable, 450000)
+  assert.equal(plan.budget.selectedDishes, 0)
+  assert.equal(plan.budget.hasShoppingPlan, false)
   assert.equal(resolveHome(data, meals(breakfast), '2026-11-20').kind, 'expired')
 })
 
@@ -52,4 +54,15 @@ test('Home ignores cooked selections and offers another meal when there is nothi
 test('Home surfaces unavailable recipes for review and ignores off-period meals', () => {
   assert.equal(resolveHome(data, meals({ ...breakfast, recipeIds: ['retired'] }), today).kind, 'review')
   assert.equal(resolveHome(data, meals({ ...breakfast, date: '2026-11-20' }), today).kind, 'plan')
+})
+
+test('Home counts selected dishes in upcoming active meals and scopes approved shopping to the open budget', () => {
+  const lunch = { ...breakfast, slot: 'lunch', recipeIds: ['com-trang', 'rau-muong-luoc'] }
+  const planned = meals(breakfast, lunch, { ...breakfast, active: false, slot: 'dinner' })
+  const approved = { periodId: period.id, lines: [{ ingredientId: 'egg' }] }
+  const withPlan = { ...data, kitchen: { events: [], approved } }
+  assert.equal(resolveHome(withPlan, planned, today).budget.selectedDishes, 3)
+  assert.equal(resolveHome(withPlan, planned, today).budget.hasShoppingPlan, true)
+  assert.equal(resolveHome({ ...withPlan, kitchen: { ...withPlan.kitchen, approved: { ...approved, periodId: 'old-period' } } },
+    planned, today).budget.hasShoppingPlan, false)
 })
